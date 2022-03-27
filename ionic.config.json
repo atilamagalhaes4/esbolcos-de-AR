@@ -1,7 +1,0 @@
-{
-  "name": "mido.app",
-  "integrations": {
-    "cordova": {}
-  },
-  "type": "angular"
-}

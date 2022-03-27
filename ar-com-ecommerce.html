@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title>R. A. com modelo 3d</title>
+        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+        <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    </head>
+
+    <!--
+         vamos aqui definir o estilo do botão
+    -->
+    <style>
+        .button {
+            background-color: #4CAF50; 
+            border: none;
+            color: white;
+            padding: 7px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 12px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 12px;
+            border: 2px solid rgba(9, 148, 28, 0.541);
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); 
+        }
+    </style>
+
+    <!--
+        Criando dois botões de aumetar e diminuir que serão criados scripts pros dois no final do codigo
+    -->
+    <div style="position: relative; top: 10px; width:100%; text-align: center; z-index: 1;">
+        <button class="button" id="botao1"> + </button>
+        <button class="button" id="botao2"> - </button>
+    </div>
+
+
+    <body style="margin: 0px; overflow: hidden;">
+        <a-scene vr-mode-ui = "enable: false" embedded arjs = "debugUIEnabled: false;">
+
+            <a-assets>
+                <a-assets-item id = "modelo" src = "./assets/01.gltf"></a-assets-item>
+            </a-assets>
+
+            <a-marker present= "hiro" >
+
+                <a-entity   position = "0 0 0"
+                            rotation = "90 0 0"
+                            scale = "0.02 0.02 0.02"
+                            gltf-model="#modelo">
+                </a-entity>
+            </a-marker>
+
+            <a-entity camera>
+
+            </a-entity>
+
+        </a-scene>
+    </body>
+
+    <script>
+        // Se clicar no botao1 vai disparar esse evento abaixo
+        document.getElementById("botao1").addEventListener("click", (e)=>{
+            // vai colocar na variavel 'el' todas as caracteristicas do id "modelo3d"
+            var el = document.querySelector('#modelo');
+
+            // usando o settAtribute conseguimos mexer na na escala, mas poderia ser qualquer outro (position, rotation, etc etc etc)
+            el.setAttribute("scale", {x: 0.04, y: 0.04, z: 0.04});
+
+            el.setAttribute("position", {x: 0, y: 0.5, z: 0});
+
+        })
+
+        // diminuir
+        document.getElementById("botao2").addEventListener("click", (e)=>{
+            var el = document.querySelector('#modelo3d');
+            el.setAttribute("scale", {x: 0.04, y: 0.04, z: 0.04});
+        })
+
+        /*
+            // Exemplo com player de video
+            document.getElementById("botao3").addEventListener("click", (e)=>{
+                var el = document.querySelector('#video');
+
+                el.setAttribute("width", "3");
+                el.setAttribute("heigth", "1.5");
+            })
+        */
+
+        // pegou o <a-marker>
+        var m = document.querySelector("a-marker");
+        // Configuracao de visibilidade dos botões
+
+        // botao 1
+        m.addEventListener("markerFound", (e)=>{ // se tiver o marcador em vista, aparece o botao
+            var btn1 = document.querySelector("#botao1").style.visibility = "visible";
+        })
+        m.addEventListener("markerLost", (e)=>{ // senao esconde o botão
+          var btn1 = document.querySelector("#botao1").style.visibility = "hidden";
+        })
+
+        // botao 2 a mesma coisa
+        m.addEventListener("markerFound", (e)=>{
+            var btn1 = document.querySelector("#botao1").style.visibility = "visible";
+        })
+        m.addEventListener("markerLost", (e)=>{
+          var btn1 = document.querySelector("#botao1").style.visibility = "hidden";
+        })
+
+
+    </script>
+</html>

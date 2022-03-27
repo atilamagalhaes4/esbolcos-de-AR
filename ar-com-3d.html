@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title>R. A. com modelo 3d</title>
+        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+        <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    </head>
+
+    <body style="margin: 0px; overflow: hidden;">
+        <a-scene vr-mode-ui = "enable: false" embedded arjs = "debugUIEnabled: false;">
+
+            <a-assets>
+                <a-assets-item id = "modelo" src = "./assets/01.gltf"></a-assets-item>
+            </a-assets>
+
+            <a-marker present= "hiro" >
+                <!--
+                    A escala é em metros
+                    criamos a entidade mas n dissemos quem ela é/o que ela é
+                    ela soube oq é pq dissemos q era um gltf-model (um modelo 3d qualquer)
+                    o id = "modelo3d" é a identificacao da entity e nao do assets-item acima.
+                -->
+                <a-entity   position = "0 0 0"
+                            rotation = "90 0 0"
+                            scale = "0.02 0.02 0.02"
+                            gltf-model="#modelo">
+                </a-entity>
+                
+            </a-marker>
+
+            <a-entity camera>
+
+            </a-entity>
+
+        </a-scene>
+    </body>
+</html>

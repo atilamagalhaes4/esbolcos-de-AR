@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title>R. A. com video</title>
+        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+        <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+
+        <!--
+            temos um componente chamado "configVideo" que possuem algumas funcoes,
+            sao elas: 
+        -->
+        <script>
+            AFRAME.registerComponent('configVideo', {
+              // ...
+              init: function () {
+                // Set up initial state and variables.
+                this.toggle = false;
+                // procurando por um componente q tenha o id = video
+                this.vid = document.querySelector("#video")
+                // inicialmente ele eh pausado
+                this.vid.pause();
+              },
+              tick:function(){
+            
+                // se o objeto 3d estiver visivel
+            if(this.el.object3D.visible == true){
+              if(!this.toggle){
+                 this.toggle = true;
+                 //ele da player
+                 this.vid.play();
+                }
+              }
+              else{ 
+                // senao ele da pouse
+                this.toggle = false;
+                this.vid.pause();
+                }
+              }
+            });
+            </script>
+
+
+    </head>
+
+    <body style="margin: 0px; overflow: hidden;">
+        <a-scene vr-mode-ui = "enable: false" embedded arjs = "debugUIEnabled: false;">
+
+            <a-assets>
+                <video id="video" src="./assets/01.mp4"></video>
+            </a-assets>
+
+            <a-marker present= "hiro" configVideo>
+                <a-video width = "1.5" heigth = "1" rotation = "0 0 0" position = "0 0 0" src = "#video"></a-video>
+            </a-marker>
+
+            <a-entity camera>
+
+            </a-entity>
+
+        </a-scene>
+    </body>
+</html>

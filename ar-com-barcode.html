@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title>R. A. com barcode</title>
+        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+        <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    </head>
+
+
+    <body style="margin: 0px; overflow: hidden;">
+        <!--
+            Adcionamos em arjs " detectionMode: mono_and_matrix; matrixCodeType: 3x3;"
+        -->
+        <a-scene vr-mode-ui = "enable: false" embedded arjs = "debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;">
+
+            <!--
+                Colocamos o tipo barcode e o valor do marcador o "0", porque eu peguei a foto do barcode
+                de numero 0. Se fosse outro usaria esse outro
+            -->
+            <a-marker type = "barcode" value = "0">
+
+                <a-box color = "red"></a-box>
+
+            </a-marker>
+
+            <a-marker type = "barcode" value = "1">
+
+                <a-box color = "green"></a-box>
+
+            </a-marker>
+
+
+            <a-entity camera>
+
+            </a-entity>
+
+        </a-scene>
+    </body>
+</html>
+
+    <!--
+        Gerador de barcode -> https://au.gmented.com/app/marker/marker.php
+    -->

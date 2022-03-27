@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title>R. A. com publicidade</title>
+        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+        <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+
+    </head>
+
+    <style>
+        .button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 7px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 12px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 12px;
+        border: 2px solid rgba(9, 148, 28, 0.541);
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        visibility: hidden;
+    }
+    </style>
+
+    <div style="position: relative; top: 10px; width:100%; text-align: center; z-index: 1;">    
+        <button class="button" id="btn1">
+            Pause
+        </button>
+        
+        <button class="button" id="btn2">
+            Play
+        </button>
+  </div>
+
+
+    <body style="margin: 0px; overflow: hidden;">
+        <a-scene vr-mode-ui = "enable: false" embedded arjs = "debugUIEnabled: false;">
+
+            <a-assets>
+                <video id="video" src="./assets/01.mp4"></video>
+            </a-assets>
+
+            <a-marker present= "hiro" >
+                <a-video width = "1.5" heigth = "1" rotation = "0 0 0" position = "0 0 0" src = "#video"></a-video>
+            </a-marker>
+
+            <a-entity camera>
+
+            </a-entity>
+
+        </a-scene>
+    </body>
+</html>
+
+<script>
+    // capturou o elemento <a-maker>
+    var m = document.querySelector("a-marker")
+   	 
+    // Se o maker estiver em cena
+    m.addEventListener("markerFound", (e)=>{
+   	 // ele dar play
+    var v = document.querySelector('#video').play();
+        // exibe o botao pause
+    var btn3 = document.querySelector("#btn1").style.visibility = "visible";
+        // exibe o botao play
+    var btn4 = document.querySelector("#btn2").style.visibility = "visible";
+     	 
+    })
+   	 
+    // Se tiver perdido de cena
+    m.addEventListener("markerLost", (e)=>{
+        //pausa o video
+        var v = document.querySelector('#video').pause();
+        //esconde o botao de pausa
+        var btn3 = document.querySelector("#btn1").style.visibility = "hidden";
+        // esconde o botao de play
+        var btn4 = document.querySelector("#btn2").style.visibility = "hidden";
+    })
+    
+    // se tiver clicado no botao de pause dispara esse evento
+    document.getElementById("btn1").addEventListener("click", (e)=>{
+        // aqui a gente para ele
+        var v = document.querySelector('#video').pause();
+    })
+
+    // se tiver clicado no de play
+    document.getElementById("btn2").addEventListener("click", (e)=>{
+        // aqui a gente da play
+        var v = document.querySelector('#video').play();
+    })
+
+</script>

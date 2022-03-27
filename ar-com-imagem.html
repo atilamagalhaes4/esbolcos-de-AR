@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title>R. A. com imagem</title>
+        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+        <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    </head>
+
+    <body style="margin: 0px; overflow: hidden;">
+        <a-scene vr-mode-ui = "enable: false" embedded arjs = "debugUIEnabled: false;">
+            <!--
+                <a-assets> é o nosso gerenciador de arquivos, é uma tag q permite inserir arquivos dentro da cena
+                ao acessar a pagina vai carregar o que tiver em assets para depois comecar a funcionar normal
+                o assets funcionará como se fosse uma caixa por exemplo.
+                em marker ficará a chamada desse objeto.
+                todos os arquivos que devem ser carregados devem ser inserivos em assets
+            -->
+            <a-assets>
+                <!--
+                    Chamei essa imagem a seguir de 'imagem'
+                -->
+                <img id = "imagem" src="./assets/01.png">
+            </a-assets>
+
+            <a-marker present= "hiro">
+                <!--
+                    Adcionaremos algumas propriedades na imagem
+                    colocando 1 ocupara exatamente o tamanho do quadrado
+                -->
+                <a-image width = "1" heigth = "1" rotation = "0 0 0" position = "0 0 0" src = "#imagem">
+
+                </a-image>
+            </a-marker>
+
+            <a-entity camera>
+
+            </a-entity>
+
+        </a-scene>
+    </body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title>Atila Magalhães</title>
+        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+        <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+
+        
+        <script>
+            AFRAME.registerComponent('configVideo', {
+              init: function () {
+                this.toggle = false;
+                this.vid = document.querySelector("#video")
+                this.vid.pause();
+              },
+              tick:function(){
+            
+            if(this.el.object3D.visible == true){
+              if(!this.toggle){
+                 this.toggle = true;
+                 this.vid.play();
+                }
+              }
+              else{
+                this.toggle = false;
+                this.vid.pause();
+                }
+              }
+            });
+            </script>
+
+    </head>
+
+
+    <body style="margin: 0px; overflow: hidden;">
+        <a-scene vr-mode-ui = "enable: true" embedded arjs = "debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;">
+
+            <a-assets>
+                <a-assets-item id = "modelo" src = "./assets2/scene.gltf"></a-assets-item>
+
+                <video id="video" src="./assets2/videoplayback.mp4" preload="auto"></video>
+            </a-assets>
+
+            <a-marker type = "barcode" value = "2" configVideo>
+                <a-video width = "1.5" heigth = "1" rotation = "90 0 0" position = "0 0 0" src = "#video"></a-video>
+            </a-marker>
+
+
+            <a-marker type = "barcode" value = "1">
+
+                <a-entity   position = "0 0 0"
+                rotation = "0 0 0"
+                scale = "0.01 0.01 0.01"
+                gltf-model="#modelo">
+                </a-entity>
+    
+            </a-marker>
+
+
+            <a-entity camera>
+
+            </a-entity>
+
+        </a-scene>
+    </body>
+</html>
+
+    <!--
+        Gerador de barcode -> https://au.gmented.com/app/marker/marker.php
+    -->

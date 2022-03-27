@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title>R. A basico</title>
+        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+        <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    </head>
+    <!-- Esse style é pra nao ter margem e usar 100% da camera do celular-->
+
+    <body style="margin: 0px; overflow: hidden;">
+        <!-- 
+            vr-mode-ui = "enable: false" desabilidará a opcao de canto dando permissao para usar o ocolus VR
+            arjs = "debugUIEnabled: false;" oculta as opcoes de desenvolvedor, informacoes de performance etc
+        -->
+        <a-scene vr-mode-ui = "enable: false" embedded arjs = "debugUIEnabled: false;">
+            <!--
+                <a-marker></a-marker> é um marcador
+                 Vai conter o conteudo da realidade aumentada
+            -->
+            <a-marker present = "hiro">
+                <!--
+                    Como é uma aula inicial, criamos uma caixa com algumas propriedades
+                -->
+                <a-box color = "red">
+
+                </a-box>
+            </a-marker>
+
+            <!--
+                Chamado uma entidade (<a-entity>)
+                    e chamando uma funcao chamada camera q sera a camera/webcam etc
+            -->
+            <a-entity camera>
+
+            </a-entity>
+
+        </a-scene>
+    </body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
+        <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>    
+    </head>
+        
+    <body style="margin : 0px; overflow: hidden;">
+
+        <a-scene
+            vr-mode-ui="enabled: false;"
+            renderer="logarithmicDepthBuffer: true;"
+            embedded arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;">
+
+            <!--
+                o <a-nft é o nosso <a-marker> em vez de type ="barcode" ou present="hiro",
+                temos o nft.
+                recomendado trabalhar com imagens de menos de mil pixels
+
+                Link para criar o marcador segundo o site : https://carnaux.github.io/NFT-Marker-Creator/
+                Link para criar o marcador segundo o carinha do video: http://nftcreator.tripod-digital.co.nz/
+                    No link do carinha o site hospeda os 3 arquivos, ele só cita na url. No video ele falou que era so
+                    colocar o nome do arquivo sem a extensao, ja que os 3 tem o mesmo nome; Mas em video ele só colocou
+                    o caminho da pasta que ele recebeu pelo email usando o link dele acima
+                em ambos tem o confidence, que seria o grau de precisao que o marcador teria, normalmente utilizado
+                por estrelas (quanto mais melhor)
+                a imagem tem q ser cheia de pontos de destaque para o marcador capta-lo // pontos de reconhecimentos
+            -->
+            <a-nft  type="nft" url="./assets/marcador-1/marcador1" smooth="true" smoothCount="10" smoothTolerance="0.01" smoothThreshold="5">
+
+                <a-box scale = "1 1 1" color = "blue">    </a-box>
+
+            </a-nft>
+
+            <a-entity camera></a-entity>
+      
+        </a-scene>
+
+    </body>
+</html>
